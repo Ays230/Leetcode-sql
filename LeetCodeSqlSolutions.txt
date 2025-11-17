@@ -1,0 +1,33 @@
+175. Combine Two Tables
+select firstName,lastName,city,state from person p
+left join address a on a.personId=p.personId;
+
+176. Second Highest Salary
+select max(salary) as  SecondHighestSalary from employee where salary < (select max(salary) from employee);
+
+178. Rank Scores
+select score,dense_rank() over (order by score desc) as rank from scores 
+
+181. Employees Earning More Than Their Managers
+select e.name as Employee
+from Employee e
+join Employee m 
+on e.managerId = m.id
+where e.salary>m.salary
+
+182. Duplicate Emails
+select email from person group by email having count(email)>1;
+
+183. Customers Who Never Order
+select name as Customers from Customers 
+ left join orders  on customers.id = orders.customerId
+where customerId is null;
+
+184. Department Highest Salary
+select d.name as Department,e.name as Employee ,e.salary as Salary from employee e 
+join department d on e.departmentId=d.id where (e.departmentId,e.salary) in
+(select departmentId,max(salary) from employee group by departmentId)
+
+196. Delete Duplicate Emails
+delete from person
+where id not in (select min(id) from person group by email)
