@@ -1,0 +1,4 @@
+183. Customers Who Never Order
+select name as Customers from Customers 
+ left join orders  on customers.id = orders.customerId
+where customerId is null;

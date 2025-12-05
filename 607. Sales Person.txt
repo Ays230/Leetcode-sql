@@ -1,0 +1,7 @@
+607. Sales Person
+select SalesPerson.name from SalesPerson
+except
+select SalesPerson.name from orders
+left join company using(com_id)
+left join SalesPerson using(sales_id)
+where company.name='RED'
